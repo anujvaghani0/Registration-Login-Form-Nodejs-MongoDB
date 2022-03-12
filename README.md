@@ -19,17 +19,11 @@ This is a Simple User Registration & Login systems app done with Node.js Framewo
 ### •Registration Form:
 Allows the user to register their account by filling their Email,PhoneNumber,Age,Password.
 
-<img src="./docs/registration.PNG" height="250" width="390" style="border: 1px solid black;">
+<img src="public/css/images/register.png" height="220" width="390" style="border: 1px solid black;">
 
 ### •Login Form:
 If the user has been registered on the app, can login by passing the credentials.
-
-<img src="/css/images/register.png" height="220" width="390" style="border: 1px solid black;">
-
-### •User's Profile:
-After the user logged in, a simple profile with the user's username and password <br>displayed with a session Logout button.
-
-<img src="/css/images/signup.png" height="160" width="380" style="border: 1px solid black;">
+<img src="public/css/images/signup.png" height="160" width="380" style="border: 1px solid black;">
 
 ### DataBase:
 Here we use **[MongoDB Atlas(Cloud)](https://www.mongodb.com/cloud/atlas)** as the database. Here we have two collection created, named as:
@@ -38,11 +32,8 @@ Here we use **[MongoDB Atlas(Cloud)](https://www.mongodb.com/cloud/atlas)** as t
 
 A Collection(**Users**) is populated with the user's credentials.
 
-<img src="./docs/userdb.PNG" height="300" width="720" style="border: 1px solid black;"><br><br>
 
-A Collection(**session**) is created which stores the users Logged session.
-
-<img src="/css/images/mongodb.png" height="300" width="720" style="border: 1px solid black;">
+<img src="public/css/images/mongodb.png" height="300" width="720" style="border: 1px solid black;">
 <br>
 <br>
 <br>
