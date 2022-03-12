@@ -30,8 +30,7 @@ Here we use **[MongoDB Atlas(Cloud)](https://www.mongodb.com/cloud/atlas)** as t
 A Collection(**Users**) is populated with the user's credentials.
 
 
-<img src="public/css/images/mongodb.png" height="300" width="720" style="border: 1px solid black;">
-
+<img src="public/css/images/mongodb.png" height="200" width="1000" style="border: 1px solid black;">
 ## Prerequisites
 Tools that we need to run this app:
 
