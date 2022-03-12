@@ -31,6 +31,7 @@ A Collection(**Users**) is populated with the user's credentials.
 
 
 <img src="public/css/images/mongodb.png" height="200" width="1000" style="border: 1px solid black;">
+
 ## Prerequisites
 Tools that we need to run this app:
 
