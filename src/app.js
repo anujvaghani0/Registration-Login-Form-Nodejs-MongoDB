@@ -8,7 +8,7 @@ require("../src/db/conn");
 const register = require("./models/registers");
 const async = require("hbs/lib/async");
 // const bcrypt = require("bcryptjs/dist/bcrypt");
-
+const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 const static_path = path.join(__dirname, "../public");
 const template_path = path.join(__dirname, "../templates/views");
@@ -28,8 +28,6 @@ app.get("/login", (req, res) => {
   res.render("login");
 });
 
-
-
 // register
 app.post("/register", async (req, res) => {
   try {
@@ -45,9 +43,11 @@ app.post("/register", async (req, res) => {
         password: passwrod,
         confirmpassword: cpasswrod,
       });
+
+      // token
+      const token = await registerEmployee.generateAuthToken();
       const registered = await registerEmployee.save();
-      res.send(registered);
-      // res.status(201).render("index");
+      res.status(201).render("index");
     } else {
       res.send("password no matching");
       // res.status(201).render("index");
@@ -57,54 +57,47 @@ app.post("/register", async (req, res) => {
   }
 });
 
-
-              //  login
+//  login
 app.post("/login", async (req, res) => {
   try {
     const email = req.body.email;
     const password = req.body.password;
     const useremail = await register.findOne({ email: email });
+    
     const isMatch = await bcrypt.compare(password, useremail.password);
-    if(isMatch){
+    const token = await useremail.generateAuthToken();
+    if (isMatch) {
       res.status(201).render("index");
-
-    }else{
-            res.status(201).send("password not matching");
+    } else {
+      res.status(201).send("password not matching");
     }
   } catch (error) {
     res.status(400).send(error);
   }
 });
 
-// const bcrypt=require("bcryptjs");
+const securepassword = async (password) => {
+  const passwordHash = await bcrypt.hash(password, 10);
+  // console.log(passwordHash);
 
-const securepassword=async(password)=>{
-  const passwordHash=await bcrypt.hash(password,10);
-  console.log(passwordHash);
+  // const passwordMatch=await bcrypt.compare("anuj11233",passwordHash);
+  // console.log(passwordMatch);
+};
 
-  const passwordMatch=await bcrypt.compare("anuj11233",passwordHash);
-  console.log(passwordMatch);
-}
+// jsonwebtoken
 
-// securepassword("anuj1123")
+// const cretetoken=async()=>{
+// const token  = await jwt.sign({_id:"624d6bd11fd80371a0549487"},'anujvaghanianujvaghanianujvaghanianujvaghani',{
+//   expiresIn:"2 second"
+// })
 
+// console.log(token);
 
-
-// JSONWEBTOKAN
-
-
-// const jwt=require("jsonwebtoken");
-// const createTokan= async ()=>{
-//   const tokan=await jwt.sign({_id:"6201e794dc45c162c7413b3a"},"anujvaghanianujvagnpmhanianujvaghanianujvaghani" ,
-//   // {expiresIn:"1 min"}
-//   )
-
-//   console.log(tokan);
-    
-//     const userver=await jwt.verify(tokan,"anujvaghanianujvaghanianujvaghanianujvaghani")
-//     console.log(userver);
+// const userVal=await jwt.verify(token,'anujvaghanianujvaghanianujvaghanianujvaghani')
+// console.log(userVal)
 // }
-// createTokan();
+// cretetoken();
+
 
 
 app.listen(port, () => {
